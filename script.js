@@ -779,6 +779,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     box-shadow: 0 0 0 3px ${config.alerts.types.success}33 !important;
                 }
                 
+                .mobile-view .input-info {
+                    display: none !important;
+                }
+                
+                .mobile-view .input-info i {
+                    display: none !important;
+                }
+
+                .mobile-view .input-wrapper i {
+                    display: none !important;
+                }
+                
                 .mobile-container {
                     padding: 1.2rem !important;
                 }
