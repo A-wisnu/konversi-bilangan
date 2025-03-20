@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konverter Bilangan - Wisnu Hidayat</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Konverter bilangan untuk mengkonversi antara biner, desimal, oktal, dan heksadesimal">
+    <meta name="author" content="Wisnu Hidayat">
+</head>
+<body>
+    <!-- Indikator Loading -->
+    <div class="loading-indicator" id="loadingIndicator"></div>
+    
+    <!-- Efek Hujan -->
+    <div class="rain-container" id="rainContainer"></div>
+    
+    <!-- Efek Air yang Penuh -->
+    <div class="water-level" id="waterLevel">
+        <div class="water-wave"></div>
+    </div>
+    
+    <!-- Efek Gelembung Air -->
+    <div id="bubbleContainer"></div>
+
+    <div class="container">
+        <header>
+            <h1>Konverter Bilangan</h1>
+            <p class="credit">Dibuat oleh Wisnu Hidayat - 231240001422</p>
+        </header>
+
+        <div class="converter-container">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="inputNumber">Masukkan Bilangan:</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="inputNumber" placeholder="Contoh: 1010 (biner), 42 (desimal), dll">
+                        <div class="input-info" id="inputInfo">
+                            <i class="fas fa-info-circle"></i>
+                            <span id="inputInfoText">Masukkan bilangan sesuai basis yang dipilih</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="base-selector">
+                    <label>Pilih Basis Input:</label>
+                    <div class="radio-group">
+                        <input type="radio" id="biner" name="base" value="biner" checked>
+                        <label for="biner"><i class="fas fa-binary"></i> Biner (0-1)</label>
+                        <input type="radio" id="desimal" name="base" value="desimal">
+                        <label for="desimal"><i class="fas fa-calculator"></i> Desimal (0-9)</label>
+                        <input type="radio" id="oktal" name="base" value="oktal">
+                        <label for="oktal"><i class="fas fa-hashtag"></i> Oktal (0-7)</label>
+                        <input type="radio" id="heksa" name="base" value="heksa">
+                        <label for="heksa"><i class="fas fa-code"></i> Heksadesimal (0-F)</label>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button id="convertBtn"><i class="fas fa-exchange-alt"></i> Konversi</button>
+                    <button id="resetBtn" class="reset-button"><i class="fas fa-sync-alt"></i> Reset</button>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h2>Hasil Konversi</h2>
+                <div class="result-grid">
+                    <div class="result-card" data-type="biner">
+                        <h3>Biner</h3>
+                        <p id="binerResult">-</p>
+                    </div>
+                    <div class="result-card" data-type="desimal">
+                        <h3>Desimal</h3>
+                        <p id="desimalResult">-</p>
+                    </div>
+                    <div class="result-card" data-type="oktal">
+                        <h3>Oktal</h3>
+                        <p id="oktalResult">-</p>
+                    </div>
+                    <div class="result-card" data-type="heksa">
+                        <h3>Heksadesimal</h3>
+                        <p id="heksaResult">-</p>
+                    </div>
+                </div>
+                <div class="copy-info">
+                    <i class="fas fa-info-circle"></i> Klik pada hasil untuk menyalin ke clipboard
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Bantuan -->
+    <button class="help-button" id="helpBtn" title="Bantuan">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <!-- Tombol Pengaturan -->
+    <button class="settings-button" id="settingsBtn" title="Pengaturan">
+        <i class="fas fa-cog"></i>
+    </button>
+
+    <!-- Panel Pengaturan -->
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-header">
+            <h3>Pengaturan Visual</h3>
+            <button class="settings-close" id="closeSettings">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="settings-content">
+            <div class="settings-group">
+                <label class="toggle-label">
+                    <span>Efek Hujan</span>
+                    <input type="checkbox" id="toggleRain" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="settings-group">
+                <label class="toggle-label">
+                    <span>Efek Gelembung</span>
+                    <input type="checkbox" id="toggleBubbles" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="settings-group">
+                <label class="toggle-label">
+                    <span>Animasi Hover</span>
+                    <input type="checkbox" id="toggleHover" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="settings-group">
+                <label class="toggle-label">
+                    <span>Efek Air</span>
+                    <input type="checkbox" id="toggleWater" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tutorial -->
+    <div class="modal-overlay" id="tutorialModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Cara Menggunakan Konverter</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="tutorial-content">
+                <div class="tutorial-steps">
+                    <div class="step" style="animation-delay: 0.1s;">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Pilih basis input (Biner, Desimal, Oktal, atau Heksadesimal)</div>
+                    </div>
+                    <div class="step" style="animation-delay: 0.2s;">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Masukkan bilangan sesuai dengan basis yang dipilih</div>
+                    </div>
+                    <div class="step" style="animation-delay: 0.3s;">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Klik tombol Konversi untuk melihat hasil</div>
+                    </div>
+                    <div class="step" style="animation-delay: 0.4s;">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Hasil konversi akan ditampilkan di bawah</div>
+                    </div>
+                    <div class="step" style="animation-delay: 0.5s;">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Klik pada hasil untuk menyalin ke clipboard</div>
+                    </div>
+                </div>
+                <div class="tutorial-tips">
+                    <i class="fas fa-lightbulb"></i> <strong>Tips:</strong> Gunakan tombol <i class="fas fa-cog"></i> untuk mengatur efek visual dan tekan Escape untuk reset
+                </div>
+                <button class="tutorial-button" id="closeTutorial">Mengerti</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Container -->
+    <div class="alert" id="customAlert">
+        <div class="alert-header">
+            <div class="alert-title">Peringatan</div>
+            <button class="alert-close" id="closeAlert">×</button>
+        </div>
+        <div class="alert-message" id="alertMessage"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
