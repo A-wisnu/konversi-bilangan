@@ -21,14 +21,6 @@ Aplikasi web untuk mengkonversi bilangan antar sistem basis (biner, desimal, okt
 - JavaScript (Vanilla JS)
 - Font Awesome untuk ikon
 
-## Screenshot
-
-![Konverter Bilangan Screenshot](screenshot.png)
-
-## Demo Online
-
-Akses aplikasi online melalui GitHub Pages: [Konverter Bilangan](https://a-wisnu.github.io/konversi-bilangan/)
-
 ## Cara Menggunakan
 
 1. Pilih basis input yang diinginkan (Biner, Desimal, Oktal, atau Heksadesimal)
